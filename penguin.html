@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pingüino - Manuel Vargas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://static.videezy.com/system/resources/thumbnails/000/052/195/original/thumbnail.jpg'); /* Cambia esta ruta por la de tu imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        @keyframes snow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: snow 10s linear infinite;
+            z-index: 10; 
+        }
+
+        .snow:nth-child(2) { left: 25%; animation-duration: 8s; }
+        .snow:nth-child(3) { left: 75%; animation-duration: 12s; }
+        .snow:nth-child(4) { left: 10%; animation-duration: 6s; }
+        .snow:nth-child(5) { left: 90%; animation-duration: 14s; }
+        .snow:nth-child(6) { left: 20%; animation-duration: 7s; }
+        .snow:nth-child(7) { left: 30%; animation-duration: 9s; }
+        .snow:nth-child(8) { left: 70%; animation-duration: 11s; }
+
+        .penguin {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5; 
+        }
+
+        .penguin-body {
+            position: absolute;
+            width: 200px;
+            height: 240px;
+            background-color: #000;
+            border-radius: 100px 100px 80px 80px;
+            top: 60px;
+            z-index: 2;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .penguin-body .belly {
+            position: absolute;
+            width: 120px;
+            height: 180px;
+            background-color: #fff;
+            border-radius: 60px 60px 60px 60px;
+            top: 40px;
+            left: 40px;
+        }
+
+        .penguin-head {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background-color: #000;
+            border-radius: 50%;
+            top: -100px;
+            left: 20px;
+            z-index: 3;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .penguin-head .eye {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 50px;
+        }
+
+        .penguin-head .eye-left {
+            left: 30px;
+        }
+
+        .penguin-head .eye-right {
+            right: 30px;
+        }
+
+        .penguin-head .eye::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #000000;
+            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+        }
+
+        .penguin-head .beak {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid orange;
+            top: 110px;
+            left: 62px;
+            z-index: 4;
+        }
+
+        .penguin-head .cheek {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+            top: 80px;
+        }
+
+        .penguin-head .cheek-left {
+            left: 20px;
+        }
+
+        .penguin-head .cheek-right {
+            right: 20px;
+        }
+
+        .penguin-wing {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            background-color: #000;
+            border-radius: 50px 50px 0 0;
+            top: 90px;
+        }
+
+        .penguin-wing-left {
+            left: -30px;
+            transform-origin: 100% 0%;
+            animation: wave 2s infinite ease-in-out;
+        }
+
+        .penguin-wing-right {
+            right: -30px;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0); }
+            50% { transform: rotate(20deg); }
+        }
+
+        .penguin-feet {
+            position: absolute;
+            width: 180px;
+            height: 20px;
+            top: 280px;
+            left: 10px;
+        }
+
+        .penguin-feet .foot {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: orange;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .penguin-feet .foot-left {
+            left: 20px;
+        }
+
+        .penguin-feet .foot-right {
+            right: 20px;
+        }
+
+        .penguin-feet .foot {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .greeting {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #000;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    <div class="snow"></div>
+    
+
+    <div class="greeting">¡Hola! Soy un pingüino. NO HAGAS CLICK SOBRE MI,
+    </div>
+
+    <div class="penguin">
+        <div class="penguin-body">
+            <div class="belly"></div>
+        </div>
+        <div class="penguin-head">
+            <div class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+            <div class="beak"></div>
+            <div class="cheek cheek-left"></div>
+            <div class="cheek cheek-right"></div>
+        </div>
+        <div class="penguin-wing penguin-wing-left"></div>
+        <div class="penguin-wing penguin-wing-right"></div>
+        <div class="penguin-feet">
+            <div class="foot foot-left"></div>
+            <div class="foot foot-right"></div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener('mousemove', function(e) {
+            const eyes = document.querySelectorAll('.eye');
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const angleX = (e.clientX - centerX) / centerX;
+            const angleY = (e.clientY - centerY) / centerY;
+    
+            eyes.forEach(eye => {
+                const eyeOffsetX = angleX * 15;
+                const eyeOffsetY = angleY * 15;
+                eye.style.transform = `translate(${eyeOffsetX}px, ${eyeOffsetY}px)`;
+            });
+        });
+    
+        // Función de parpadeo
+        function blink() {
+            const eyes = document.querySelectorAll('.eye');
+            eyes.forEach(eye => {
+                eye.style.height = '20px'; 
+    
+                setTimeout(() => {
+                    eye.style.height = '40px'; 
+                }, 200);
+            });
+        }
+        setInterval(blink, 5000); 
+    
+
+ const penguin = document.querySelector('.penguin');
+    penguin.addEventListener('click', () => {
+        penguin.style.transition = 'transform 0.3s ease';
+        penguin.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+            penguin.style.transform = 'translateY(0)';
+        }, 300);
+    });
+
+
+    
+        const colors = ['#99cfff', '#87ceeb', '#4682b4', '#1e90ff', '#0f3d73'];
+        let colorIndex = 0;
+        setInterval(() => {
+            document.body.style.backgroundColor = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+        }, 4000);
+    
+        penguin.addEventListener('click', () => {
+            const leftWing = document.querySelector('.penguin-wing-left');
+            const rightWing = document.querySelector('.penguin-wing-right');
+            leftWing.style.animation = 'wave 0.5s infinite ease-in-out';
+            rightWing.style.animation = 'wave 0.5s infinite ease-in-out';
+            
+            setTimeout(() => {
+                leftWing.style.animation = 'wave 2s infinite ease-in-out';
+                rightWing.style.animation = 'wave 2s infinite ease-in-out';
+            }, 1000);
+        });
+    
+    </script>
+    
+</body>
+</html>
